@@ -1,0 +1,21 @@
+# 서버 포트 설정
+server:
+  port: 8082 #하나의 컴퓨터에서 같은 포트를 사용할 수 없다. 포트 충돌 날 수 있다.
+
+# database 연동 설정
+spring:
+  datasource: #이것을 postgresql로 바꾸면 될 듯 하다...
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/db_codingrecipe?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: user_codingrecipe #postgresql은 5432포트를 사용한다.
+    password: 1234
+  thymeleaf:
+    cache: false
+
+  # spring data jpa 설정
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: create
