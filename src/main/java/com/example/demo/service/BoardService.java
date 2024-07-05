@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -49,5 +48,12 @@ public class BoardService {
         } else {
             return null;
         }
+    }
+
+    public BoardDTO update(BoardDTO boardDTO) {
+        // jpa에서 update를 위한 함수는 따로 제공되지 않는다.
+        BoardEntity boardEntity = BoardEntity.toUpdateEntity(boardDTO);
+        boardRepository.save(boardEntity);
+        return findById(boardDTO.getId());
     }
 }
