@@ -65,4 +65,10 @@ public class BoardController {
         // return "redirect:/board/" + boardDTO.getId();
         // 이렇게 해도 되지만, 상세조회를 할 때 조회수를 올리기 때문에 수정을 했는데도 조회수에 영향이 있을 수 있다.
     }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id, Model model) {
+        boardService.delete(id);
+        return "redirect:/board/";
+    }
 }
