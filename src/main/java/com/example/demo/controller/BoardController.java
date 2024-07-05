@@ -49,4 +49,20 @@ public class BoardController {
         model.addAttribute("board", boardDTO);
         return "detail";
     }
+
+    @GetMapping("/update/{id}")
+    public String updateForm(@PathVariable Long id, Model model) {
+        BoardDTO boardDTO = boardService.findById(id);
+        model.addAttribute("boardUpdate", boardDTO);
+        return "update";
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute BoardDTO boardDTO, Model model) {
+        BoardDTO board = boardService.update(boardDTO);
+        model.addAttribute("board", board);
+        return "detail";
+        // return "redirect:/board/" + boardDTO.getId();
+        // 이렇게 해도 되지만, 상세조회를 할 때 조회수를 올리기 때문에 수정을 했는데도 조회수에 영향이 있을 수 있다.
+    }
 }
